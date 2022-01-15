@@ -116,3 +116,17 @@ from matplotlib import pyplot as plt
 results.boxplot(column=[SCORING], by='model',# positions=[1, 3, 2],
     showmeans=True, figsize=(7, 5))
 plt.ylim([0.4, 1.0])
+
+# %%
+# Plot one decision tree for explainability
+from sklearn.tree import plot_tree
+
+rf = RandomForestClassifier(n_estimators=10, random_state=SEED)
+print(cross_val_score(rf, X_train, y_train, scoring=SCORING, cv=10).mean())
+rf.fit(X_train, y_train)
+
+ESTIMATOR = 0
+
+fig = plt.figure(figsize=(150, 100))
+plot_tree(rf.estimators_[ESTIMATOR], max_depth=3, feature_names=X_train.columns,
+    class_names=["no", "yes"], filled=True, proportion=True, rounded=True)
