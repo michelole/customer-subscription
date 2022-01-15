@@ -44,6 +44,11 @@ data['age_group'] = data['age'].apply(lambda x: math.floor(x / 10) * 10)
 data['duration_min_group'] = data['duration'].apply(lambda x: math.floor(x / 60 / 10) * 10)
 data.head()
 # %%
+# Save preprocessed data
+
+data.to_pickle('data/preprocessed_data.pkl')
+
+# %%
 
 # Find missing values
 data.isnull().sum()
