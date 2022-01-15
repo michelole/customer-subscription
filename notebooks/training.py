@@ -37,7 +37,7 @@ majority = DummyClassifier(random_state=SEED)
 # SVM typically leads to near-optimal results in linearly separable problems.
 from sklearn.svm import LinearSVC
 
-svm = LinearSVC(random_state=SEED)
+svm = LinearSVC(dual=False, random_state=SEED)
 
 # %%
 # Use kNN to train the model.
