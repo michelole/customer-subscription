@@ -131,7 +131,7 @@ results.boxplot(column=[SCORING], by='model',# positions=[1, 3, 2],
 plt.ylim([0.4, 1.0])
 
 # %%
-# Plot one decision tree for explainability
+# Random Forest: plot one decision tree to explain the model
 from sklearn.tree import plot_tree
 
 rf = RandomForestClassifier(n_estimators=10, random_state=SEED)
@@ -143,3 +143,22 @@ ESTIMATOR = 0
 fig = plt.figure(figsize=(150, 100))
 plot_tree(rf.estimators_[ESTIMATOR], max_depth=3, feature_names=X_train.columns,
     class_names=["no", "yes"], filled=True, proportion=True, rounded=True)
+
+# %%
+# Feature importance
+import numpy as np
+
+classifiers = {
+    'Random Forest': rf,
+    'Gradient Boosting': gb
+    }
+
+for name, clf in classifiers.items():
+    clf.fit(X_train, y_train)
+    importance = pd.DataFrame({'feature': X_train.columns, 'importance': clf.feature_importances_})
+    importance = importance.sort_values('importance', ascending=False)
+    top = importance.head(10)
+    top.plot.bar()
+    plt.xticks(np.arange(len(top)), labels=top['feature'])
+    plt.title(f"Top {len(top)} features for {name}")
+    plt.show()
