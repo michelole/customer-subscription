@@ -144,12 +144,28 @@ model.compile(optimizer='adam',
 tf.keras.utils.plot_model(model, show_shapes=True, rankdir="LR")
 # %%
 # Train the model
-model.fit(train_ds, epochs=10, validation_data=val_ds)
+history = model.fit(train_ds, epochs=10, validation_data=val_ds)
 
 # %%
 # Evaluate the model
 loss, accuracy = model.evaluate(test_ds)
 print("Accuracy", accuracy)
+
+# %%
+# Plot learning curve
+from matplotlib import pyplot as plt
+
+plt.plot(history.history['loss'], label='train')
+plt.plot(history.history['val_loss'], label='validation')
+plt.title("Loss")
+plt.legend()
+plt.show()
+
+plt.plot(history.history['accuracy'], label='train')
+plt.plot(history.history['val_accuracy'], label='validation')
+plt.legend()
+plt.title("Accuracy")
+plt.show()
 
 # %%
 # Save the model
