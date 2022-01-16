@@ -162,3 +162,19 @@ for name, clf in classifiers.items():
     plt.xticks(np.arange(len(top)), labels=top['feature'])
     plt.title(f"Top {len(top)} features for {name}")
     plt.show()
+
+# %%
+# # Predict on test data
+test = pd.read_excel("data/test_file.xlsx")
+print(test.dtypes)
+test.head()
+
+# %%
+# Encode test data the same as train data
+test_dummies = pd.get_dummies(test).reindex(columns=X_train.columns, fill_value=0)
+test_dummies.head()
+
+# %%
+# Predict and save results
+test['y_pred'] = gb.predict(test_dummies)
+test.to_excel("data/test_file_pred.xlsx")
