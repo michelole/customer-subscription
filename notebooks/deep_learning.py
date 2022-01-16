@@ -148,8 +148,14 @@ history = model.fit(train_ds, epochs=10, validation_data=val_ds)
 
 # %%
 # Evaluate the model
+from sklearn.metrics import classification_report
 loss, accuracy = model.evaluate(test_ds)
 print("Accuracy", accuracy)
+
+y_pred_prob = model.predict(test_ds)
+y_pred = np.argmax(y_pred_prob, axis=1)
+
+print(classification_report(test['target'], y_pred))
 
 # %%
 # Plot learning curve
