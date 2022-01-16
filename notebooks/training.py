@@ -54,6 +54,14 @@ from sklearn.ensemble import RandomForestClassifier
 rf = RandomForestClassifier(n_estimators=10, random_state=SEED)
 
 # %%
+# Use logistic regression to train the model.
+# Logistic regression is a strong baseline for binary classification problems
+# and also provides an explainable model.
+from sklearn.linear_model import LogisticRegression
+
+lr = LogisticRegression(random_state=SEED, max_iter=1000)
+
+# %%
 # Use a boosting algorithm to train the model.
 # Boosting may generalize better on test data.
 from sklearn.ensemble import GradientBoostingClassifier
@@ -95,6 +103,7 @@ classifiers = {
     'SVM': svm,
     'kNN': knn,
     'Random Forest': rf,
+    'LR': lr,
     'Gradient Boosting': gb
     }
 
