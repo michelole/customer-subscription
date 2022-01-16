@@ -77,6 +77,10 @@ X_train = dummies.drop(['y_no', 'y_yes'], axis=1)
 y_train = dummies['y_yes']
 
 # %%
+# Persist data for reuse
+X_train.to_pickle("data/X_train.pkl")
+y_train.to_pickle("data/y_train.pkl")
+
 # %%
 # Iterate over classifier to generate repors
 from sklearn.model_selection import cross_val_score, cross_val_predict
