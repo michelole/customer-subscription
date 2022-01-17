@@ -1,4 +1,4 @@
-# customer-subscription: Outcome prediction of bank marketing calls
+# Outcome prediction of bank marketing calls
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -28,3 +28,4 @@ Evaluate the feasibility of automatically predicting the outcome of bank marketi
 - Install `graphviz` using a package manager of your choice (e.g. `brew` or `conda`).
 - `pip install -r dev-requirements.txt`
 - `pip install -r requirements.txt`
+- Set the working directory of Jupyter noteboks to the root folder.
